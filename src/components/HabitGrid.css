@@ -1,0 +1,29 @@
+* {
+    background-color: #969696;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto;
+    justify-content: center;
+    margin: auto;
+    
+
+}
+
+#dayButton {
+    background-color: antiquewhite;
+    border-radius: 25%;
+    
+}
+
+.habit-check {
+    margin: auto;
+}
+
+.habits {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+
+}
