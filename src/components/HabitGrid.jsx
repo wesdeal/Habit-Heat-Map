@@ -53,7 +53,7 @@ export default function HabitGrid() {
 
 
   /* State Variables */
-  const [track, setTrack] = useState(Array(length).fill(false));
+  const [count, setCount] = useState(Array(length).fill(0)); /* [0,0,0,0,0,0,0,0] count for each day*/
   const [habits, setHabits] = useState([]);
   const [newHabit, setNewHabit] = useState("");
 
@@ -63,16 +63,21 @@ export default function HabitGrid() {
   let today = dateObj.getDate();
 
   
-  const [isToggled, setIsToggled] = useState(false);
+  const [isToggled, setIsToggled] = useState(false); 
   function handleToggle() {
     handleHabit();
     setIsToggled(!isToggled)
   
   }
   function handleHabit() {
-    const newTrack = [...track];
-    newTrack[today - 1] = !isToggled;
-    setTrack(newTrack);
+    const newCount = [...count];
+    
+    newCount[today - 1] += 1;
+    setCount(newCount);
+
+    setOpacity(count[today - 1] / habits.length)
+    console.log(opacity)
+    console.log( count[today-1] )
   }
 
   function handleAddHabit() {
@@ -87,7 +92,7 @@ export default function HabitGrid() {
         
         <div className="grid-container">
           {[...Array(length)].map((_, i) => (
-            <button style={{ backgroundColor: track[i] ? "green" : "antiquewhite"}} id="dayButton" key={i}>{i + 1}</button>
+            <button style={{ backgroundColor: "rgba(0, 128, 0, ${opacity})"}} id="dayButton" key={i}>{i + 1}</button>
           ))}
         </div>
         
