@@ -121,9 +121,13 @@ export default function HabitGrid() {
         <h2>{date}</h2>
         
         <div className="grid-container">
-          {[...Array(length)].map((_, i) => (
-            <button style={{ backgroundColor: `rgba(0, 128, 0, ${opacity})`}} id="dayButton" key={i}>{i + 1}</button>
-          ))}
+          {[...Array(length)].map((_, i) => {
+            const dayOpacity = habits.length === 0 ? 0 : count[i] / habits.length; /* calculate opacity for the day based on habitschecked and # of total habits */
+            return (
+              <button 
+                style={{ backgroundColor: `rgba(0, 128, 0, ${dayOpacity})` }} id="dayButton" key={i}>{i + 1}</button>
+            );
+          })}   
         </div>
         
         <div className="habits">
@@ -143,6 +147,9 @@ export default function HabitGrid() {
 
     </div>
   );
+
+
+
 }
 
 
