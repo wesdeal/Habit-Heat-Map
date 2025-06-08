@@ -49,13 +49,13 @@ export default function HabitGrid() {
   }
   
 
-  const length = days;
+  const length = days; /* days in month, used to fill arrays tracking all the days */
 
 
   /* State Variables */
   const [count, setCount] = useState(Array(length).fill(0)); /* [0,0,0,0,0,0,0,0] count for each day*/
-  const [habits, setHabits] = useState([]);
-  const [newHabit, setNewHabit] = useState("");
+  const [habits, setHabits] = useState([]); /* array to hold all habits that get added */
+  const [newHabit, setNewHabit] = useState(""); /* habit that is created and added by user */
 
   const[opacity, setOpacity] = useState(0);
 
@@ -63,24 +63,54 @@ export default function HabitGrid() {
   let today = dateObj.getDate();
 
   
-  const [isToggled, setIsToggled] = useState(false); 
-  function handleToggle() {
-    handleHabit();
-    setIsToggled(!isToggled)
-  
-  }
-  function handleHabit() {
-    const newCount = [...count];
-    
-    newCount[today - 1] += 1;
-    setCount(newCount);
+  const [checkedState, setCheckedState] = useState([]); /* boolean array, keeps track of each habit, whether its checked off or not */
+  console.log(checkedState)
 
-    setOpacity(count[today - 1] / habits.length)
-    console.log(opacity)
-    console.log( count[today-1] )
+  function handleToggle(j) {
+    
+    const newCheckedState = [...checkedState];
+    
+    newCheckedState[j] = !newCheckedState[j];
+    
+    setCheckedState(newCheckedState);
+    
+    handleHabit(j);
   }
+
+
+
+  function handleHabit(j) {
+    console.log("first number of checks:", count[today -1 ])
+    const newCheckedState = [...checkedState];
+    newCheckedState[j] = !newCheckedState[j];
+    const newCount = [...count];
+    console.log("Boolean before if statement: ", newCheckedState[j]);
+    /* console.log("index for habit clicked: ", j) */
+    if (newCheckedState[j] === true) {
+      newCount[today - 1] += 1;
+    } 
+    if (newCheckedState[j] === false) {
+      newCount[today - 1] -= 1;
+    }
+
+    setCount(newCount);
+    console.log("# of checks on given day: ", newCount[today-1] );
+    setCheckedState(newCheckedState);
+
+    setOpacity(newCount[today - 1] / habits.length);
+    /* console.log("opacity: ", opacity);
+    console.log("# of checks on given day: ", count[today-1] );
+    console.log("Count array: ", count); */
+  }
+
+
+
 
   function handleAddHabit() {
+
+    setCheckedState([...checkedState, false]); /* copy array and append a false to it */
+
+
     setHabits([...habits, newHabit]);
     console.log(habits);
     setNewHabit("");
@@ -92,7 +122,7 @@ export default function HabitGrid() {
         
         <div className="grid-container">
           {[...Array(length)].map((_, i) => (
-            <button style={{ backgroundColor: "rgba(0, 128, 0, ${opacity})"}} id="dayButton" key={i}>{i + 1}</button>
+            <button style={{ backgroundColor: `rgba(0, 128, 0, ${opacity})`}} id="dayButton" key={i}>{i + 1}</button>
           ))}
         </div>
         
@@ -100,7 +130,7 @@ export default function HabitGrid() {
 
           {[...Array(habits.length)].map((_, j) => (
             <React.Fragment key={j}>
-              <input type="checkbox" id={`habitCheckbox-${j}`} onChange={handleToggle} />
+              <input type="checkbox" id={`habitCheckbox-${j}`} checked={checkedState[j]} onChange={() => handleHabit(j)} />
               <label htmlFor={`habitCheckbox-${j}`}>{habits[j]}</label>
             </React.Fragment>
           ))}
