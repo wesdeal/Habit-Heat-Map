@@ -48,7 +48,7 @@ export default function HabitGrid() {
     days = 31;
   }
   
-
+  
   const length = days; /* days in month, used to fill arrays tracking all the days */
 
 
@@ -124,8 +124,8 @@ export default function HabitGrid() {
           {[...Array(length)].map((_, i) => {
             const dayOpacity = habits.length === 0 ? 0 : count[i] / habits.length; /* calculate opacity for the day based on habitschecked and # of total habits */
             return (
-              <button 
-                style={{ backgroundColor: `rgba(0, 128, 0, ${dayOpacity})` }} id="dayButton" key={i}>{i + 1}</button>
+              <td 
+                style={{ backgroundColor: `rgba(0, 128, 0, ${dayOpacity})` }} id="dayButton" key={i}>{i + 1}</td>
             );
           })}   
         </div>
@@ -141,8 +141,8 @@ export default function HabitGrid() {
         </div>
 
         <div className="addHabit">
-          <input value={newHabit} onChange={(e) => setNewHabit(e.target.value)} placeholder="New habit..."/>
-          <button onClick={handleAddHabit}>Add</button>
+          <input className="habit-input" value={newHabit} onChange={(e) => setNewHabit(e.target.value)} placeholder="New habit..."/>
+          <button className="habit-btn" onClick={handleAddHabit}>Add</button>
         </div>
 
     </div>
