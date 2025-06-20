@@ -4,6 +4,8 @@ import { useState, useRef } from "react";
 import Grid from "./Grid";
 import Habits from "./Habits";
 import useHabits from "./useHabits";
+import { supabase } from '../supabaseClient'
+
 
 
 // Removed handleHabit from here; it will be defined inside HabitGrid
@@ -24,8 +26,8 @@ export default function HabitGrid() {
     checkedState,
     newHabit,
     setNewHabit,
-    handleHabit,
-    handleAddHabit
+    handleHabit,/* what happens when you mark a habit as completed */
+    handleAddHabit /* what happens when you click 'add' */
   } = useHabits(daysInMonth)
 
   return (

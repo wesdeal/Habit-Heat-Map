@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { supabase } from '../supabaseClient'
+
 
 
 export default function useHabits(length) {
@@ -54,15 +56,23 @@ export default function useHabits(length) {
     
     
     
-      function handleAddHabit() {
-    
+      async function handleAddHabit() {
         setCheckedState([...checkedState, false]); /* copy array and append a false to it */
-    
-    
+
         setHabits([...habits, newHabit]);
-        console.log(habits);
+
+        const {data, error} = await supabase 
+            .from('Habits')
+            .insert([{user_id: '623849f5-6392-4b88-85d6-bedd2c1c21da', name: newHabit}])
+
         setNewHabit("");
-      }
+
+        if (error) {
+            console.error("Insert error:", error.message);
+            } else {
+            console.log("Insert success:", data);
+            }
+        }
 
 
       return{
