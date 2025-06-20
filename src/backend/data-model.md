@@ -15,3 +15,4 @@
 - habit_id (foreign key to Habits.id)
 - date_completed (string, e.g., "2025-06-11")
 - completed (boolean)
+
