@@ -1,7 +1,3 @@
-import React from "react";
- // Replace './yourModule' with the actual module pat
-
-
  // Component to render calendar days that get tracked
 
 export default function Grid( { habits, count, length } ) {

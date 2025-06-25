@@ -1,14 +1,9 @@
 import React from "react";
 import './HabitGrid.css'
-import { useState, useRef } from "react";
 import Grid from "./Grid";
 import Habits from "./Habits";
 import useHabits from "./useHabits";
-import { supabase } from '../supabaseClient'
-
-
-
-// Removed handleHabit from here; it will be defined inside HabitGrid
+import Navbar from "./Navbar";
 
 
 export default function HabitGrid() {
@@ -31,7 +26,9 @@ export default function HabitGrid() {
   } = useHabits(daysInMonth)
 
   return (
+
        <div className="">
+        <Navbar/>
         <h2>{date}</h2>
         
         <Grid habits={habits} count={count} length={daysInMonth} />
@@ -42,18 +39,9 @@ export default function HabitGrid() {
           <button className="habit-btn" onClick={handleAddHabit}>Add</button>
         </div>
 
-    </div>
+      </div>
   );
 
 
 
 }
-
-
-
-/* Ideas:
-
- - for how green each box is:
-      divide the number of habits by 100, that will be the % opacity of green that will be added for each habit checked off
-
-*/
