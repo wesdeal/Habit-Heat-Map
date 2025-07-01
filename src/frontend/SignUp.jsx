@@ -1,7 +1,14 @@
 import Navbar from "./Navbar";
+import UseSignUp from "./useSignUp";
 
-export default function SignUp() {
+export default function signUp() {
+    
 
+    const {
+        email,
+        setEmail,
+        handleRegister
+    } = UseSignUp()
 
     return(
         <div>
@@ -9,13 +16,13 @@ export default function SignUp() {
             <form action="">
                 <div className="textInput">
                     <input type="text" id="username" placeholder="Create a username..." />
-                    <input type="text" id="email" placeholder="Email..." />
+                    <input type="text" id="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email..." />
                     <input type="password" id="password" placeholder="Password..." />
                     <input type="password" id="cPassword" placeholder="Confirm Password..." />
                 </div>
 
                 <div className="registerBtn">
-                    <button>Register</button>
+                    <button className="register-btn" onClick={handleRegister} >Register</button>
                 </div>
                 
             </form>
