@@ -7,6 +7,12 @@ export default function signUp() {
     const {
         email,
         setEmail,
+        username,
+        setUsername,
+        password,
+        setPassword,
+        cPassword,
+        setCPassword,
         handleRegister
     } = UseSignUp()
 
@@ -15,10 +21,10 @@ export default function signUp() {
             <Navbar/>
             <form action="">
                 <div className="textInput">
-                    <input type="text" id="username" placeholder="Create a username..." />
+                    <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Create a username..." />
                     <input type="text" id="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email..." />
-                    <input type="password" id="password" placeholder="Password..." />
-                    <input type="password" id="cPassword" placeholder="Confirm Password..." />
+                    <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password..." />
+                    <input type="password" id="cPassword" value={cPassword} onChange={(e) => setCPassword(e.target.value)} placeholder="Confirm Password..." />
                 </div>
 
                 <div className="registerBtn">

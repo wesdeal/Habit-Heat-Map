@@ -5,6 +5,9 @@ import { useState } from 'react'
 export default function UseSignUp() {
     
     const [email, setEmail] = useState("")
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
+    const [cPassword, setCPassword] = useState("")
 
     async function handleRegister(e) {
         /* logic for when a user hits submit on sign up form */
@@ -13,7 +16,10 @@ export default function UseSignUp() {
 
         const { data, error } = await supabase
             .from('Users')
-            .insert([{email: email, username: username}])
+            .insert([{
+                email: email,
+                username: username
+            }])
         
         /* so far, this does successfully add email to database and give user a UUID */
         /* 
@@ -28,6 +34,12 @@ export default function UseSignUp() {
     return {
         email,
         setEmail,
+        username,
+        setUsername,
+        password,
+        setPassword,
+        cPassword,
+        setCPassword,
         handleRegister
     };
 }
