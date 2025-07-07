@@ -13,9 +13,10 @@ export default function signUp() {
         setPassword,
         cPassword,
         setCPassword,
+        validSignUp,
         handleRegister
     } = UseSignUp()
-
+    console.log("At start, validSignUp is: ", validSignUp)
     return(
         <div>
             <Navbar/>
@@ -29,6 +30,7 @@ export default function signUp() {
 
                 <div className="registerBtn">
                     <button className="register-btn" onClick={handleRegister} >Register</button>
+                    <p style={{display: validSignUp ? "none" : "flex", color:"red"}}>Username Taken</p>
                 </div>
                 
             </form>

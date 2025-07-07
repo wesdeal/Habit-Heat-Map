@@ -8,7 +8,7 @@ export default function Navbar() {
         <nav className="navbar">
             <div className="navbar-left">
                 <Link to="/signup">
-                    <a href="/" className="welcome">Hello, User.</a>
+                    Hello, User.
                 </Link>
             </div>
 
@@ -21,9 +21,9 @@ export default function Navbar() {
             <div className="navbar-right">
                 <ul className="navbar-options">
                     <Link to="/signup">
-                    <li><a href="/">Sign Up</a></li>
+                    <li>Sign Up</li>
                     </Link>
-                    <li><a href="/">Sign In</a></li>
+                    <li>Sign In</li>
                 </ul>
             </div>
         </nav>
