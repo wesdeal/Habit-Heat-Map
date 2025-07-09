@@ -32,12 +32,13 @@ export default function HabitGrid() {
         <h2>{date}</h2>
         
         <Grid habits={habits} count={count} length={daysInMonth} />
-        <Habits habits={habits} length={daysInMonth} handleHabit={handleHabit} checkedState={checkedState}/>
+        
 
         <div className="addHabit">
           <input className="habit-input" value={newHabit} onChange={(e) => setNewHabit(e.target.value)} placeholder="New habit..."/>
           <button className="habit-btn" onClick={handleAddHabit}>Add</button>
         </div>
+        <Habits habits={habits} length={daysInMonth} handleHabit={handleHabit} checkedState={checkedState}/>
 
       </div>
   );

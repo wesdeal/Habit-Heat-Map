@@ -13,16 +13,16 @@ export default function signUp() {
         setPassword,
         cPassword,
         setCPassword,
-        validSignUp,
+        errorMessage,
         handleRegister
     } = UseSignUp()
-    console.log("At start, validSignUp is: ", validSignUp)
+
     return(
         <div>
             <Navbar/>
             <form action="">
                 <div className="textInput">
-                    <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Create a username..." />
+                    <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Create a username..."/>
                     <input type="text" id="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email..." />
                     <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password..." />
                     <input type="password" id="cPassword" value={cPassword} onChange={(e) => setCPassword(e.target.value)} placeholder="Confirm Password..." />
@@ -30,7 +30,7 @@ export default function signUp() {
 
                 <div className="registerBtn">
                     <button className="register-btn" onClick={handleRegister} >Register</button>
-                    <p style={{display: validSignUp ? "none" : "flex", color:"red"}}>Username Taken</p>
+                    <p style={{color:"red"}}>{errorMessage}</p>
                 </div>
                 
             </form>
