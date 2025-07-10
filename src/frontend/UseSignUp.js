@@ -15,7 +15,7 @@ export default function UseSignUp() {
         /* logic for when a user hits submit on sign up form */
         e.preventDefault();
 
-        if ((username == "") || (email == "") || (password == "") || (cPassword == ""))  {
+        if ((username === "") || (email === "") || (password === "") || (cPassword === ""))  {
             /* make sure user enters all fields */
             console.log("Error: Fill all Fields");
             setErrorMessage("Please fill in all fields.")

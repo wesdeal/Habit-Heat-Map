@@ -7,9 +7,7 @@ export default function Navbar() {
     return(
         <nav className="navbar">
             <div className="navbar-left">
-                <Link to="/signup">
-                    Hello, User.
-                </Link>
+                    <p>Hello, User.</p>
             </div>
 
             <div className="navbar-center">
@@ -23,7 +21,9 @@ export default function Navbar() {
                     <Link to="/signup">
                     <li>Sign Up</li>
                     </Link>
-                    <li>Sign In</li>
+                    <Link to="/signin">
+                        <li>Sign In</li>
+                    </Link>
                 </ul>
             </div>
         </nav>
