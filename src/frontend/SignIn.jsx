@@ -4,8 +4,8 @@ import UseSignIn from "./UseSignIn";
 export default function SignIn() {
 
     const {
-        username,
-        setUsername,
+        email,
+        setEmail,
         password,
         setPassword,
         errorMessage,
@@ -17,7 +17,7 @@ export default function SignIn() {
             <Navbar/>
             <form action="">
                 <div className="textInput">
-                    <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username..."/>
+                    <input type="text" id="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email..."/>
                     <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password..." />
                 </div>
 

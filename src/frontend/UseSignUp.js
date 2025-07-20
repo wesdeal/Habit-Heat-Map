@@ -10,6 +10,7 @@ export default function UseSignUp() {
     const [cPassword, setCPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     
+    
 
     async function handleRegister(e) {
         /* logic for when a user hits submit on sign up form */
@@ -22,34 +23,35 @@ export default function UseSignUp() {
             return;    
         }
 
-        const {data: existing, error: selectError} = await supabase
+        /* const {data: existing, error: selectError} = await supabase
         .from('Users')
         .select('username')
-        .eq('username', username)
+        .eq('username', username) */
 
-        if (selectError) {
-            console.log(selectError)
-        }
-
-        if (existing.length > 0) {
-            /* Username is taken, display message on screen */
+        /* if (existing.length > 0) {
+            /* Username is taken, display message on screen 
             console.log("Error: Username Taken")
             setErrorMessage("Username Taken");
             return;
-        }
+        } */
         
 
 
-        const { data, error } = await supabase
-        .from('Users')
-        .insert([{
+        const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
             email: email,
-            username: username
-        }])
-        if (error) {
-            console.log(error);
-        } else {
-            console.log("Sign up Success.")
+            password: password
+        });
+
+        if (signUpError) {
+            console.error("Signup error:", signUpError);
+            return;
+        }
+
+        // Get the user ID from auth
+        const user = signUpData.user;
+
+        if (user) {
+            console.log("Sign Up Success")
         }
 
     
