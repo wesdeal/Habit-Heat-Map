@@ -1,10 +1,13 @@
 import { useState } from "react";
 import supabase from "../supabaseClient";
+import { useNavigate } from 'react-router-dom';
 
 
 
 
 export default function UseSignIn() {
+
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -12,6 +15,7 @@ export default function UseSignIn() {
 
     async function handleSignIn(e) {
         e.preventDefault();
+
         if ((email === "") || (password === ""))  {
             /* make sure user enters all fields */
             console.log("Error: Fill all Fields");
@@ -19,29 +23,22 @@ export default function UseSignIn() {
             return;    
         }
 
-        console.log(email);
-        console.log(password);
-                /* handle sign in logic with pulling from supabase */
 
+        /* handle sign in logic with pulling from supabase */
         const { data, error } = await supabase.auth.signInWithPassword({
             email: email,
             password: password,
         })
 
-        if (error) {
+        if (error) { /* error checking */
             console.log("Sign-in error:", error.message);
             return;
         }
 
-        console.log(data);
-
-        
-
-
-        
-        
-
-        
+        if (data) {
+            console.log(data);
+            navigate('/')
+        }
 
 
     }
