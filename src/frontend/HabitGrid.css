@@ -1,42 +1,130 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-    background-color: #949494;
+  background-color: #0d1117;
+  color: #c9d1d9;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.habit-app {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 16px;
+  background-color: #161b22;
+  min-height: 100vh;
+}
+
+.date-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #58a6ff;
+  margin-bottom: 24px;
 }
 
 .grid-container {
-    display: grid;
-    grid-template-columns: auto auto auto auto auto auto auto;
-    justify-content: center;
-    margin: auto;
-    
-
+  display: grid;
+  justify-content: center;
+  /* 7 rows for days of week, auto columns for weeks */
+  grid-template-rows: repeat(7, 12px);
+  grid-auto-flow: column;
+  grid-auto-columns: 12px;
+  gap: 5px;
+  margin: 0 auto 32px;
+  padding: 16px;
+  background-color: #0d1117;
 }
 
 #dayButton {
-    width: 25px;
-    height: 25px;
-    background-color: rgb(152, 111, 55);
-    border: 1px solid;
-    border-radius: 25%;
-    margin: 1px;
-    
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  border: 1px solid #30363d;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+  background-color: #161b22;
 }
 
-.habit-check {
-    margin: auto;
+#dayButton:hover {
+  transform: scale(1.2);
 }
 
-.habits {
-    display: grid;
-    grid-template-columns: auto auto;
-    justify-content: center;
-
+#dayButton:hover::after {
+  content: attr(data-day) ': ' attr(title);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #30363d;
+  color: #c9d1d9;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 1000;
+  margin-bottom: 4px;
 }
 
+.addHabit {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 32px;
+}
 
 .habit-input {
-    background-color: rgb(255, 249, 241);
-    border: 1.5px solid;
-    border-radius: 10px;
-    height: 25px;
-    padding: 5px;
+  flex: 1;
+  padding: 8px 12px;
+  background-color: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  color: #c9d1d9;
+  font-size: 14px;
+}
+
+.habit-input::placeholder {
+  color: #8b949e;
+}
+
+.habit-input:focus {
+  border-color: #58a6ff;
+  outline: none;
+}
+
+.habit-btn {
+  padding: 8px 16px;
+  background-color: #238636;
+  color: #f0f6fc;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.habit-btn:hover {
+  background-color: #2ea043;
+}
+
+@media (max-width: 768px) {
+  .grid-container {
+    gap: 2px;
+    padding: 12px;
+  }
+  #dayButton {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid-container {
+    gap: 2px;
+  }
+  #dayButton {
+    width: 8px;
+    height: 8px;
+  }
 }

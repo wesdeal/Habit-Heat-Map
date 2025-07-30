@@ -50,8 +50,16 @@ export default function useHabits(length) {
         /* console.log("opacity: ", opacity);
         console.log("# of checks on given day: ", count[today-1] );
         console.log("Count array: ", count); */
+
+
+        /* Insert into database */
+        
       }
-    
+      
+
+      async function insertHabit() {
+        /* insert into habit table for user */
+      }
     
     
     

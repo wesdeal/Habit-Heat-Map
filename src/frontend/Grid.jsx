@@ -1,23 +1,38 @@
- // Component to render calendar days that get tracked
+import React from 'react';
+import './HabitGrid.css';
 
-export default function Grid( { habits, count, length } ) {
+// GitHub-style green shades
+const LEVELS = [
+  '#161b22',
+  '#0e4429',
+  '#006d32',
+  '#26a641',
+  '#39d353'
+];
 
+function getColor(opacity) {
+  if (opacity === 0) return LEVELS[0];
+  if (opacity < 0.25) return LEVELS[1];
+  if (opacity < 0.5) return LEVELS[2];
+  if (opacity < 0.75) return LEVELS[3];
+  return LEVELS[4];
+}
 
-    return(
-        <tr className="grid-container">
-          {[...Array(length)].map((_, i) => {
-
-
-            const dayOpacity = habits.length === 0 ? 0 : count[i] / habits.length; 
-            
-            /* calculate opacity for the day based on habitschecked and # of total habits */
-            return (
-              <td 
-                style={{ backgroundColor: `rgba(0, 128, 0, ${dayOpacity})` }} id="dayButton" key={i}>{i + 1}</td>
-            );
-
-
-          })}   
-        </tr>
-    )
-};
+export default function Grid({ habits, count, length }) {
+  return (
+    <div className="grid-container">
+      {Array.from({ length }).map((_, i) => {
+        const dayOpacity = habits.length ? count[i] / habits.length : 0;
+        return (
+          <div
+            key={i}
+            id="dayButton"
+            data-day={`Day ${i + 1}`}
+            title={`${count[i]} habit${count[i] !== 1 ? 's' : ''}`}
+            style={{ backgroundColor: getColor(dayOpacity) }}
+          />
+        );
+      })}
+    </div>
+  );
+}

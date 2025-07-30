@@ -8,12 +8,14 @@ import Navbar from "./Navbar";
 
 export default function HabitGrid() {
   const dateObj = new Date();
-  const date = dateObj.toString();
+  const date = dateObj.toLocaleDateString('en-US', { 
+    weekday: 'long', 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  });
   const daysInMonth = new Date(dateObj.getFullYear(), dateObj.getMonth() + 1, 0).getDate();
-  /* days in month, used to fill arrays tracking all the days */
-  // Removed useHabits destructuring to avoid redeclaration error
 
-  /* State Variables */
   const {
     habits,
     setHabits,
@@ -21,28 +23,30 @@ export default function HabitGrid() {
     checkedState,
     newHabit,
     setNewHabit,
-    handleHabit,/* what happens when you mark a habit as completed */
-    handleAddHabit /* what happens when you click 'add' */
+    handleHabit,
+    handleAddHabit
   } = useHabits(daysInMonth)
 
   return (
-
-       <div className="">
-        <Navbar/>
+    <div className="habit-app">
+      <Navbar/>
+      <div className="date-header">
         <h2>{date}</h2>
-        
-        <Grid habits={habits} count={count} length={daysInMonth} />
-        
-
-        <div className="addHabit">
-          <input className="habit-input" value={newHabit} onChange={(e) => setNewHabit(e.target.value)} placeholder="New habit..."/>
-          <button className="habit-btn" onClick={handleAddHabit}>Add</button>
-        </div>
-        <Habits habits={habits} length={daysInMonth} handleHabit={handleHabit} checkedState={checkedState}/>
-
       </div>
+      
+      <Grid habits={habits} count={count} length={daysInMonth} />
+      
+      <div className="addHabit">
+        <input 
+          className="habit-input" 
+          value={newHabit} 
+          onChange={(e) => setNewHabit(e.target.value)} 
+          placeholder="Add a new habit..."
+        />
+        <button className="habit-btn" onClick={handleAddHabit}>Add</button>
+      </div>
+      
+      <Habits habits={habits} length={daysInMonth} handleHabit={handleHabit} checkedState={checkedState}/>
+    </div>
   );
-
-
-
 }
